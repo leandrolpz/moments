@@ -15,7 +15,8 @@ export class HomeComponent {
   moments: Moment[] = []
   baseApiUrl = environment.baseApiUrl
 
-  // tem que fazer  todo da search 
+  faSearch = faSearch
+  searchTerm: string = ''
 
   constructor(private momentService: MomentService) { }
 
@@ -25,11 +26,20 @@ export class HomeComponent {
       const data = items.data
 
       data.map((items) => {
-        items.create_at = new Date(items.create_at!).toLocaleDateString(
+        items.created_at = new Date(items.created_at!).toLocaleDateString(
           'pt-BR')
       })
       this.allMoments = data
       this.moments = data
+    })
+  }
+
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
+    this.moments = this.allMoments.filter((moment) => {
+      return moment.title.toLowerCase().includes(value)
     })
   }
 
