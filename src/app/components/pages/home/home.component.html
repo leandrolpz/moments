@@ -19,6 +19,7 @@
         />
         <h3>{{ moment.title }}</h3>
         <p class="date">Em: {{ moment.created_at }}</p>
+        <h4>{{ moment.description }}</h4>
         <p>Comentários: {{ moment.comments!.length }}</p>
         <p><a routerLink="/moments/{{ moment.id }}">Detalhes</a></p>
       </div>
